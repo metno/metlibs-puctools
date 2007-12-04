@@ -20,12 +20,15 @@ AC_PROG_LIBTOOL
 AC_FUNC_ALLOCA
 AC_HEADER_STDC
 
-export PKG_CONFIG_PATH=$PKG_CONFIG_PATH:$prefix/lib/pkgconfig
-PKG_CHECK_MODULES([HDF], [hdf])
+# Make sure pkg-config also considers $prefix/lib/pkgconfig.
+#export PKG_CONFIG_PATH=$PKG_CONFIG_PATH:$prefix/lib/pkgconfig
+#PKG_CHECK_MODULES([HDF], [hdf])
 
 
 AC_CHECK_HEADERS([stdlib.h string.h])
-AC_CHECK_HEADERS(hdf/hdf.h stdarg.h ctype.h stdlib.h math.h)
+AC_CHECK_HEADERS([stdarg.h ctype.h stdlib.h math.h])
+AC_CHECK_HEADERS([hdf/hdf.h])
+
 # Checks for typedefs, structures, and compiler characteristics.
 AC_HEADER_STDBOOL
 AC_C_CONST
