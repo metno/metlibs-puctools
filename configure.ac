@@ -14,20 +14,22 @@ AC_CONFIG_MACRO_DIR([m4])
 # Checks for programs.
 AC_PROG_CC
 AC_PROG_LIBTOOL
+
 # Checks for libraries.
+
+# Not available under pkg-config on all platforms:
+# Make sure pkg-config also considers $prefix/lib/pkgconfig.
+#export PKG_CONFIG_PATH=$PKG_CONFIG_PATH:$prefix/lib/pkgconfig
+#PKG_CHECK_MODULES([HDF], [hdf])
 
 # Checks for header files.
 AC_FUNC_ALLOCA
 AC_HEADER_STDC
 
-# Make sure pkg-config also considers $prefix/lib/pkgconfig.
-#export PKG_CONFIG_PATH=$PKG_CONFIG_PATH:$prefix/lib/pkgconfig
-#PKG_CHECK_MODULES([HDF], [hdf])
+AC_CHECK_HEADERS([stdlib.h string.h stdarg.h ctype.h math.h], , 
+	         AC_MSG_FAILURE(Missing required header))
 
-
-AC_CHECK_HEADERS([stdlib.h string.h])
-AC_CHECK_HEADERS([stdarg.h ctype.h stdlib.h math.h])
-AC_CHECK_HEADERS([hdf/hdf.h])
+AC_CHECK_HEADERS([hdf/hdf.h], , AC_MSG_FAILURE(Missing required header))
 
 # Checks for typedefs, structures, and compiler characteristics.
 AC_HEADER_STDBOOL
