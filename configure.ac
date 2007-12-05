@@ -6,13 +6,19 @@ AC_INIT([puCtools], [4.0.0], [diana@met.no])
 AM_INIT_AUTOMAKE
 METNO_SET_VERSION_INFO
 
+AC_LANG_PUSH(C)
 
 AC_CONFIG_SRCDIR([src/puMath.c])
 AC_CONFIG_HEADER([include/config.h])
 AC_CONFIG_MACRO_DIR([m4])
 
 # Checks for programs.
+AC_PROG_CXX
 AC_PROG_CC
+AC_PROG_CPP
+AC_PROG_INSTALL
+AC_PROG_LN_S
+AC_PROG_MAKE_SET
 AC_PROG_LIBTOOL
 
 # Checks for libraries.
@@ -26,7 +32,8 @@ AC_PROG_LIBTOOL
 AC_FUNC_ALLOCA
 AC_HEADER_STDC
 
-AC_CHECK_HEADERS([stdlib.h string.h stdarg.h ctype.h math.h], , 
+AC_CHECK_HEADERS([stdlib.h stdio.h stdarg.h string.h math.h \
+                  sys/types.h ctype.h], , 
 	         AC_MSG_FAILURE(Missing required header))
 
 AC_CHECK_HEADERS([hdf/hdf.h], , AC_MSG_FAILURE(Missing required header))
@@ -35,10 +42,16 @@ AC_CHECK_HEADERS([hdf/hdf.h], , AC_MSG_FAILURE(Missing required header))
 AC_HEADER_STDBOOL
 AC_C_CONST
 AC_TYPE_SIZE_T
+AC_TYPE_INT8_T
+AC_TYPE_INT16_T
+AC_TYPE_INT32_T
 
 # Checks for library functions.
 AC_FUNC_MALLOC
+AC_CHECK_LIB([m], [log10])
 AC_CHECK_FUNCS([strdup])
+
+AC_LANG_POP(C)
 
 AC_CONFIG_FILES([Makefile
 		puctools.pc
