@@ -6,8 +6,6 @@ AC_INIT([puCtools], [4.0.0], [diana@met.no])
 AM_INIT_AUTOMAKE
 METNO_SET_VERSION_INFO
 
-AC_LANG_PUSH(C)
-
 AC_CONFIG_SRCDIR([src/puMath.c])
 AC_CONFIG_HEADER([include/config.h])
 AC_CONFIG_MACRO_DIR([m4])
@@ -20,6 +18,8 @@ AC_PROG_INSTALL
 AC_PROG_LN_S
 AC_PROG_MAKE_SET
 AC_PROG_LIBTOOL
+
+AC_LANG_PUSH(C)
 
 # Checks for libraries.
 
