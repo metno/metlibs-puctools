@@ -36,7 +36,7 @@ AC_CHECK_HEADERS([stdlib.h stdio.h stdarg.h string.h math.h \
                   sys/types.h ctype.h], , 
 	         AC_MSG_FAILURE(Missing required header))
 
-AC_CHECK_HEADERS([hdf/hdf.h], , AC_MSG_FAILURE(Missing required header))
+
 
 # Checks for typedefs, structures, and compiler characteristics.
 AC_HEADER_STDBOOL
