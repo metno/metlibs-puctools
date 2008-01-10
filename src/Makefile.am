@@ -7,3 +7,5 @@ libpuctools_la_SOURCES=getopt.c\
 	timemanip.c
 
 libpuctools_la_LDFLAGS = ${VERSION_INFO}
+
+INSTALL=install -p # tells install to preserve timestamp
