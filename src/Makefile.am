@@ -9,3 +9,4 @@ libpuctools_la_SOURCES=getopt.c\
 libpuctools_la_LDFLAGS = ${VERSION_INFO}
 
 INSTALL=install -p # tells install to preserve timestamp
+DEFAULT_INCLUDES=-I${srcdir}/../include

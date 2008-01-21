@@ -8,6 +8,7 @@ pkg_include_HEADERS=bool.h\
 	getopt.h\
 	puCtools.h\
 	safety.h\
-	timemanip.h
+	timemanip.h\
+	config.h
 
 INSTALL=install -p # tells install to preserve timestamp
