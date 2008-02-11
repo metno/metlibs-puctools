@@ -2,7 +2,7 @@
 # Process this file with autoconf to produce a configure script.
 
 AC_PREREQ(2.59)
-AC_INIT([puCtools], [4.0.0], [diana@met.no])
+AC_INIT([puCtools], [3.0.0], [diana@met.no])
 AM_INIT_AUTOMAKE
 METNO_SET_VERSION_INFO
 
@@ -42,9 +42,6 @@ AC_CHECK_HEADERS([stdlib.h stdio.h stdarg.h string.h math.h \
 AC_HEADER_STDBOOL
 AC_C_CONST
 AC_TYPE_SIZE_T
-AC_TYPE_INT8_T
-AC_TYPE_INT16_T
-AC_TYPE_INT32_T
 
 # Checks for library functions.
 AC_FUNC_MALLOC
