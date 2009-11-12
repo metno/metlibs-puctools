@@ -57,6 +57,21 @@
 
 #ifndef HDFI_H
 
+#if defined(WIN32)
+
+typedef char              char8;
+typedef unsigned char     uchar8;
+typedef char              int8;
+typedef unsigned char     uint8;
+typedef short int         int16;
+typedef unsigned short int uint16;
+typedef long int          int32;
+typedef unsigned long int uint32;
+typedef int               intn;
+typedef unsigned int      uintn;
+
+#else
+
 typedef int8_t     int8;
 typedef int8_t     char8;
 typedef u_int8_t   uint8;
@@ -65,6 +80,8 @@ typedef int16_t    int16;
 typedef u_int16_t  uint16;
 typedef int32_t    int32;
 typedef u_int32_t  uint32;
+
+#endif
 
 typedef float      float32;
 typedef double     float64;
