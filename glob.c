@@ -43,7 +43,7 @@
 #include <dirent.h>
 #include <ctype.h>
 #include <errno.h>
-#ifdef HAVE_PWD_H
+#if HAVE_PWD_H
 #include <pwd.h>
 #endif
 #include <stdlib.h>
@@ -890,5 +890,4 @@ qprintf(const char *str, Char *s)
 #endif
 
 #endif /* !defined(HAVE_GLOB) || !defined(GLOB_HAS_ALTDIRFUNC) ||
-          !defined(GLOB_HAS_GL_MATCHC) */
-
+	  !defined(GLOB_HAS_GL_MATCHC) */
