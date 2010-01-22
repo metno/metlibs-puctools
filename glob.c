@@ -35,13 +35,17 @@
 /* Imported into metlibs from OpenSSH 5.3p1 */
 /* OPENBSD ORIGINAL: lib/libc/gen/glob.c */
 
+#include "config.h"
+
 #include <sys/types.h>
 #include <sys/stat.h>
 
 #include <dirent.h>
 #include <ctype.h>
 #include <errno.h>
+#ifdef HAVE_PWD_H
 #include <pwd.h>
+#endif
 #include <stdlib.h>
 #include <string.h>
 #include <unistd.h>
@@ -345,6 +349,7 @@ globexp2(const Char *ptr, const Char *pattern, glob_t *pglob, int *rv)
 static const Char *
 globtilde(const Char *pattern, Char *patbuf, size_t patbuf_len, glob_t *pglob)
 {
+#ifdef HAVE_PWD_H
 	struct passwd *pwd;
 	char *h;
 	const Char *p;
@@ -400,6 +405,12 @@ globtilde(const Char *pattern, Char *patbuf, size_t patbuf_len, glob_t *pglob)
 	*b = EOS;
 
 	return patbuf;
+#else
+	(void)patbuf;
+	(void)patbuf_len;
+	(void)pglob;
+	return pattern;
+#endif
 }
 
 
