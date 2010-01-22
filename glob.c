@@ -122,7 +122,7 @@ get_arg_max(void)
 #define	M_MASK		0xffff
 #define	M_ASCII		0x00ff
 
-typedef u_short Char;
+typedef unsigned short Char;
 
 #else
 
@@ -148,7 +148,7 @@ typedef char Char;
 
 
 static int	 compare(const void *, const void *);
-static int	 g_Ctoc(const Char *, char *, u_int);
+static int	 g_Ctoc(const Char *, char *, unsigned int);
 static int	 g_lstat(Char *, struct stat *, glob_t *);
 static DIR	*g_opendir(Char *, glob_t *);
 static Char	*g_strchr(Char *, int);
@@ -173,11 +173,11 @@ int
 glob(const char *pattern, int flags, int (*errfunc)(const char *, int),
     glob_t *pglob)
 {
-	const u_char *patnext;
+	const unsigned char *patnext;
 	int c;
 	Char *bufnext, *bufend, patbuf[PATH_MAX];
 
-	patnext = (u_char *) pattern;
+	patnext = (unsigned char *) pattern;
 	if (!(flags & GLOB_APPEND)) {
 		pglob->gl_pathc = 0;
 		pglob->gl_pathv = NULL;
@@ -635,14 +635,14 @@ glob3(Char *pathbuf, Char *pathbuf_last, Char *pathend, Char *pathend_last,
 	else
 		readdirfunc = (struct dirent *(*)(void *))readdir;
 	while ((dp = (*readdirfunc)(dirp))) {
-		u_char *sc;
+		unsigned char *sc;
 		Char *dc;
 
 		/* Initial DOT must be matched literally. */
 		if (dp->d_name[0] == DOT && *pattern != DOT)
 			continue;
 		dc = pathend;
-		sc = (u_char *) dp->d_name;
+		sc = (unsigned char *) dp->d_name;
 		while (dc < pathend_last && (*dc++ = *sc++) != EOS)
 			;
 		if (dc >= pathend_last) {
@@ -688,7 +688,7 @@ globextend(const Char *path, glob_t *pglob, size_t *limitp)
 {
 	char **pathv;
 	int i;
-	u_int newsize, len;
+	unsigned int newsize, len;
 	char *copy;
 	const Char *p;
 
@@ -725,7 +725,7 @@ globextend(const Char *path, glob_t *pglob, size_t *limitp)
 	pathv[pglob->gl_offs + pglob->gl_pathc] = NULL;
 
 	if ((pglob->gl_flags & GLOB_LIMIT) &&
-	    newsize + *limitp >= (u_int) get_arg_max()) {
+	    newsize + *limitp >= (unsigned int) get_arg_max()) {
 		errno = 0;
 		return(GLOB_NOSPACE);
 	}
@@ -854,7 +854,7 @@ g_strchr(Char *str, int ch)
 }
 
 static int
-g_Ctoc(const Char *str, char *buf, u_int len)
+g_Ctoc(const Char *str, char *buf, unsigned int len)
 {
 
 	while (len--) {
