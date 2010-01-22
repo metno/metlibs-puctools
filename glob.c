@@ -53,6 +53,12 @@
 #include "glob.h"
 #include "strlcpy.h"
 
+#ifdef WIN32
+#define PATH_MAX MAX_PATH
+#define S_ISLNK(sb) (0)
+#define lstat(buf, sb) stat((buf), (sb))
+#endif
+
 #if !defined(HAVE_GLOB) || !defined(GLOB_HAS_ALTDIRFUNC) || \
     !defined(GLOB_HAS_GL_MATCHC) || \
     !defined(HAVE_DECL_GLOB_NOMATCH) || HAVE_DECL_GLOB_NOMATCH == 0 || \
