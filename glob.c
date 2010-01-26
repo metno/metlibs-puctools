@@ -51,12 +51,11 @@
 #include <unistd.h>
 
 #include "glob.h"
+#include "stat.h"
 #include "strlcpy.h"
 
 #ifdef WIN32
 #define PATH_MAX MAX_PATH
-#define S_ISLNK(sb) (0)
-#define lstat(buf, sb) stat((buf), (sb))
 #endif
 
 #if !defined(HAVE_GLOB) || !defined(GLOB_HAS_ALTDIRFUNC) || \
@@ -155,10 +154,10 @@ typedef char Char;
 
 static int	 compare(const void *, const void *);
 static int	 g_Ctoc(const Char *, char *, unsigned int);
-static int	 g_lstat(Char *, struct stat *, glob_t *);
+static int	 g_lstat(Char *, pu_struct_stat *, glob_t *);
 static DIR	*g_opendir(Char *, glob_t *);
 static Char	*g_strchr(Char *, int);
-static int	 g_stat(Char *, struct stat *, glob_t *);
+static int	 g_stat(Char *, pu_struct_stat *, glob_t *);
 static int	 glob0(const Char *, glob_t *);
 static int	 glob1(Char *, Char *, glob_t *, size_t *);
 static int	 glob2(Char *, Char *, Char *, Char *, Char *, Char *,
@@ -542,7 +541,7 @@ static int
 glob2(Char *pathbuf, Char *pathbuf_last, Char *pathend, Char *pathend_last,
     Char *pattern, Char *pattern_last, glob_t *pglob, size_t *limitp)
 {
-	struct stat sb;
+	pu_struct_stat sb;
 	Char *p, *q;
 	int anymeta;
 
@@ -826,7 +825,7 @@ g_opendir(Char *str, glob_t *pglob)
 }
 
 static int
-g_lstat(Char *fn, struct stat *sb, glob_t *pglob)
+g_lstat(Char *fn, pu_struct_stat *sb, glob_t *pglob)
 {
 	char buf[PATH_MAX];
 
@@ -834,11 +833,11 @@ g_lstat(Char *fn, struct stat *sb, glob_t *pglob)
 		return(-1);
 	if (pglob->gl_flags & GLOB_ALTDIRFUNC)
 		return((*pglob->gl_lstat)(buf, sb));
-	return(lstat(buf, sb));
+	return(pu_lstat(buf, sb));
 }
 
 static int
-g_stat(Char *fn, struct stat *sb, glob_t *pglob)
+g_stat(Char *fn, pu_struct_stat *sb, glob_t *pglob)
 {
 	char buf[PATH_MAX];
 
@@ -846,7 +845,7 @@ g_stat(Char *fn, struct stat *sb, glob_t *pglob)
 		return(-1);
 	if (pglob->gl_flags & GLOB_ALTDIRFUNC)
 		return((*pglob->gl_stat)(buf, sb));
-	return(stat(buf, sb));
+	return(pu_stat(buf, sb));
 }
 
 static Char *
