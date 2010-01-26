@@ -13,11 +13,20 @@ extern "C" {
 // Windows with Microsoft Visual C runtime: separate 64-bit functions
 
 typedef struct _stati64 pu_struct_stat;
+
 static inline int
 pu_stat(const char *fn, pu_struct_stat *sb)
 {
 	return _stati64(fn, sb);
 }
+
+static inline int
+pu_lstat(const char *fn, pu_struct_stat *sb)
+{
+	return _stati64(fn, sb);
+}
+
+#define S_ISLNK(sb) (0)
 
 #else
 
@@ -26,11 +35,19 @@ pu_stat(const char *fn, pu_struct_stat *sb)
  * directly (*BSD), or the library takes care of it transparently (GNU).
  */
 typedef struct stat pu_struct_stat;
+
 static inline int
 pu_stat(const char *fn, pu_struct_stat *sb)
 {
 	return stat(fn, sb);
 }
+
+static inline int
+pu_lstat(const char *fn, pu_struct_stat *sb)
+{
+	return lstat(fn, sb);
+}
+
 #endif
 
 #ifdef __cplusplus
