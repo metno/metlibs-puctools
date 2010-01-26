@@ -32,6 +32,7 @@ pkg_include_HEADERS = \
 	getopt.h \
 	puCtools.h \
 	safety.h \
+	stat.h \
 	strlcpy.h \
 	timemanip.h
 
