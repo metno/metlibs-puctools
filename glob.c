@@ -35,7 +35,9 @@
 /* Imported into metlibs from OpenSSH 5.3p1 */
 /* OPENBSD ORIGINAL: lib/libc/gen/glob.c */
 
+#if HAVE_CONFIG_H
 #include "config.h"
+#endif
 
 #include <sys/types.h>
 
