@@ -6,5 +6,6 @@ includedir=@includedir@
 Name: puCtools
 Description: C functions 
 Version: @VERSION@
+# Requires: @puCtools_pc_requires@
 Libs: -L${libdir} -lpuCtools
 Cflags: -I${includedir}
