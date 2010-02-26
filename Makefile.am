@@ -30,6 +30,7 @@ pkg_include_HEADERS = \
 	puMath.h \
 	stringmanip.h \
 	getopt.h \
+	mkdir.h \
 	puCtools.h \
 	safety.h \
 	stat.h \
