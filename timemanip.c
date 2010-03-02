@@ -41,6 +41,10 @@
    History: 18 Sep 1997: Creation
             Nov. 1998: Prepared for /usr/local/lib */
 
+#ifdef HAVE_CONFIG_H
+#include "config.h"
+#endif
+
 #include "timemanip.h"
 #include <string.h>
 

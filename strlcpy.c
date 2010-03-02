@@ -20,6 +20,10 @@
 /* Imported into metlibs from OpenSSH 5.3p1 */
 /* OPENBSD ORIGINAL: lib/libc/string/strlcpy.c */
 
+#ifdef HAVE_CONFIG_H
+#include "config.h"
+#endif
+
 #include <sys/types.h>
 #include <string.h>
 
