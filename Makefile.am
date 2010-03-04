@@ -21,7 +21,7 @@ libpuCtools_la_LDFLAGS = \
 libpuCtools_la_LIBADD = \
 	-lm
 
-pkg_includedir = ${prefix}/include/puCtools
+pkg_includedir = ${includedir}/puCtools
 
 pkg_include_HEADERS = \
 	bool.h \
