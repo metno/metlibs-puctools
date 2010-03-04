@@ -57,7 +57,7 @@
 
 #ifndef HDFI_H
 
-#if defined(WIN32)
+#if defined(__WIN32__)
 
 typedef char              char8;
 typedef unsigned char     uchar8;
