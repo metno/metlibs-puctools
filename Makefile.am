@@ -11,6 +11,7 @@ libpuCtools_la_SOURCES = \
 	glob.c \
 	puMath.c \
 	safety.c \
+	sleep.c \
 	stringmanip.c \
 	strlcpy.c \
 	timemanip.c
@@ -33,6 +34,7 @@ pkg_include_HEADERS = \
 	mkdir.h \
 	puCtools.h \
 	safety.h \
+	sleep.h \
 	stat.h \
 	strlcpy.h \
 	timemanip.h
