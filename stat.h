@@ -32,7 +32,8 @@ pu_lstat(const char *fn, pu_struct_stat *sb)
 
 /*
  * Everything else: either stat() / fstat() / lstat() support 64-bit sizes
- * directly (*BSD), or the library takes care of it transparently (GNU).
+ * directly (*BSD), or the library takes care of it transparently (GNU
+ * with _FILE_OFFSET_BITS defined to 64, courtesy of AC_SYS_LARGEFILE).
  */
 typedef struct stat pu_struct_stat;
 
