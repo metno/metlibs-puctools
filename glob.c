@@ -183,6 +183,15 @@ glob(const char *pattern, int flags, int (*errfunc)(const char *, int),
 	int c;
 	Char *bufnext, *bufend, patbuf[PATH_MAX];
 
+#ifdef WIN32
+	/*
+	 * Always use GLOB_NOESCAPE on Windows, since the escape character
+	 * (backslash) is used as a path separator.  This is not likely to
+	 * cause any trouble; it is almost impossible for an average user
+	 * to create a file with a * or ? in its name.
+	 */
+	flags |= GLOB_NOESCAPE;
+#endif
 	patnext = (unsigned char *) pattern;
 	if (!(flags & GLOB_APPEND)) {
 		pglob->gl_pathc = 0;
@@ -351,6 +360,18 @@ globexp2(const Char *ptr, const Char *pattern, glob_t *pglob, int *rv)
 
 /*
  * expand tilde from the passwd file.
+ *
+ * This is a no-op on Win32 since HAVE_PWD_H is false; hence, we don't
+ * care that the code assumes / as path separator.
+ *
+ * TODO: use GetUserProfileDirectoryA() on Win32:
+ *
+ *	HANDLE ptok;
+ *	LPTSTR path;
+ *	LPDWORD pathlen;
+ *	OpenProcessToken(GetCurrentProcess(), TOKEN_QUERY, &ptok);
+ *	GetUserProfileDirectoryA(ptok, path, &pathlen);
+ *	CloseHandle(ptok);
  */
 static const Char *
 globtilde(const Char *pattern, Char *patbuf, size_t patbuf_len, glob_t *pglob)
