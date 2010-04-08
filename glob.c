@@ -364,14 +364,20 @@ globexp2(const Char *ptr, const Char *pattern, glob_t *pglob, int *rv)
  * This is a no-op on Win32 since HAVE_PWD_H is false; hence, we don't
  * care that the code assumes / as path separator.
  *
- * TODO: use GetUserProfileDirectoryA() on Win32:
+ * TODO: fix the above and use GetUserProfileDirectoryA() to expand ~ on
+ * Win32:
+ *
+ *	#include <windows.h>
+ *	#include <userenv.h>
  *
  *	HANDLE ptok;
- *	LPTSTR path;
- *	LPDWORD pathlen;
+ *	DWORD pathlen = 1024;
+ *	CHAR path[pathlen];
  *	OpenProcessToken(GetCurrentProcess(), TOKEN_QUERY, &ptok);
  *	GetUserProfileDirectoryA(ptok, path, &pathlen);
  *	CloseHandle(ptok);
+ *
+ * and add -luserenv to LDADD.
  */
 static const Char *
 globtilde(const Char *pattern, Char *patbuf, size_t patbuf_len, glob_t *pglob)
