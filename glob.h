@@ -46,8 +46,8 @@
 
 #ifndef _GLOB_H_
 #define	_GLOB_H_
-
-struct stat;
+#include "stat.h"
+/*struct stat;*/
 typedef struct {
 	int gl_pathc;		/* Count of total paths so far. */
 	int gl_matchc;		/* Count of paths matching pattern. */

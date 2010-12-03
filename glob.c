@@ -47,6 +47,7 @@
 #if HAVE_PWD_H
 #include <pwd.h>
 #endif
+#include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
 #include <unistd.h>
@@ -54,6 +55,7 @@
 #include "glob.h"
 #include "stat.h"
 #include "strlcpy.h"
+
 
 #ifdef WIN32
 #define PATH_MAX MAX_PATH
@@ -625,6 +627,7 @@ glob2(Char *pathbuf, Char *pathbuf_last, Char *pathend, Char *pathend_last,
 	/* NOTREACHED */
 }
 
+
 static int
 glob3(Char *pathbuf, Char *pathbuf_last, Char *pathend, Char *pathend_last,
     Char *pattern, Char *restpattern, Char *restpattern_last, glob_t *pglob,
@@ -641,6 +644,7 @@ glob3(Char *pathbuf, Char *pathbuf_last, Char *pathend, Char *pathend_last,
 	 * and dirent.h as taking pointers to differently typed opaque
 	 * structures.
 	 */
+
 	struct dirent *(*readdirfunc)(void *);
 
 	if (pathend > pathend_last)
@@ -650,6 +654,7 @@ glob3(Char *pathbuf, Char *pathbuf_last, Char *pathend, Char *pathend_last,
 
 	if ((dirp = g_opendir(pathbuf, pglob)) == NULL) {
 		/* TODO: don't call for ENOENT or ENOTDIR? */
+
 		if (pglob->gl_errfunc) {
 			if (g_Ctoc(pathbuf, buf, sizeof(buf)))
 				return(GLOB_ABORTED);
@@ -663,6 +668,7 @@ glob3(Char *pathbuf, Char *pathbuf_last, Char *pathend, Char *pathend_last,
 	err = 0;
 
 	/* Search directory for matching names. */
+
 	if (pglob->gl_flags & GLOB_ALTDIRFUNC)
 		readdirfunc = pglob->gl_readdir;
 	else
@@ -672,6 +678,7 @@ glob3(Char *pathbuf, Char *pathbuf_last, Char *pathend, Char *pathend_last,
 		Char *dc;
 
 		/* Initial DOT must be matched literally. */
+
 		if (dp->d_name[0] == DOT && *pattern != DOT)
 			continue;
 		dc = pathend;
@@ -700,7 +707,6 @@ glob3(Char *pathbuf, Char *pathbuf_last, Char *pathend, Char *pathend_last,
 		closedir(dirp);
 	return(err);
 }
-
 
 /*
  * Extend the gl_pathv member of a glob_t structure to accommodate a new item,
@@ -821,6 +827,9 @@ match(Char *name, Char *pat, Char *patend)
 void
 globfree(glob_t *pglob)
 {
+/* If we use the glob cache, the cache will bee
+	responsible for freeing the menory.*/
+
 	int i;
 	char **pp;
 
