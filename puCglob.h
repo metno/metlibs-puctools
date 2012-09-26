@@ -39,6 +39,10 @@
 /* Imported into metlibs from OpenSSH 5.3p1 */
 /* OPENBSD ORIGINAL: include/glob.h */
 
+#if defined(__MSVCRT__) 
+/* use this glob.h */
+
+
 #if !defined(HAVE_GLOB_H) || !defined(GLOB_HAS_ALTDIRFUNC) || \
     !defined(GLOB_HAS_GL_MATCHC) || \
     !defined(HAVE_DECL_GLOB_NOMATCH) || HAVE_DECL_GLOB_NOMATCH == 0 || \
@@ -105,3 +109,8 @@ void	globfree(glob_t *);
 
 #endif /* !defined(HAVE_GLOB_H) || !defined(GLOB_HAS_ALTDIRFUNC)  ||
 	  !defined(GLOB_HAS_GL_MATCHC */
+
+#else  /* MSVCRT */
+/* use system glob.h */
+#include <glob.h>
+#endif /* MSVCRT */

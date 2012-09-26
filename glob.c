@@ -32,6 +32,10 @@
  * SUCH DAMAGE.
  */
 
+#if defined(__MSVCRT__)
+
+/* only use if no glob exists, e.g. on microsoft */
+
 /* Imported into metlibs from OpenSSH 5.3p1 */
 /* OPENBSD ORIGINAL: lib/libc/gen/glob.c */
 
@@ -927,3 +931,5 @@ qprintf(const char *str, Char *s)
 
 #endif /* !defined(HAVE_GLOB) || !defined(GLOB_HAS_ALTDIRFUNC) ||
 	  !defined(GLOB_HAS_GL_MATCHC) */
+
+#endif /* defined(__MSVCRT__) */

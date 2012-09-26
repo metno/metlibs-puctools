@@ -45,7 +45,7 @@
 #include <sys/time.h>
 #include <miLogger/logger.h>
 #include <miLogger/LogHandler.h>
-#include "glob.h"
+#include "puCglob.h"
 
 
 // unix emulation code for the win32 _splitpath function
