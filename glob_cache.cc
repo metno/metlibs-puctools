@@ -230,8 +230,8 @@ glob_cache(const char *pattern, int flags, int (*errfunc)(const char *, int),
 			  if (use_loghandler)
 				  if (use_loghandler)
 				  {
-				  	COMMON_LOG::getInstance("common").infoStream() << "glob_cache done in: " << s << " s";
-				    COMMON_LOG::getInstance("common").infoStream().flush();
+//				  	COMMON_LOG::getInstance("common").debugStream() << "glob_cache done in: " << s << " s";
+//				    COMMON_LOG::getInstance("common").debugStream().flush();
 				  }
 			  else
 				  printf ("glob_cache done in: %f s\n",s);
@@ -273,8 +273,8 @@ glob_cache(const char *pattern, int flags, int (*errfunc)(const char *, int),
   double s = (((double)post.tv_sec*1000000.0 + (double)post.tv_usec)-((double)pre.tv_sec*1000000.0 + (double)pre.tv_usec))/1000000.0;
   if (use_loghandler)
   {
-	  COMMON_LOG::getInstance("common").infoStream() << "glob_cache done in: " << s << " s";
-  	  COMMON_LOG::getInstance("common").infoStream().flush();
+//	  COMMON_LOG::getInstance("common").debugStream() << "glob_cache done in: " << s << " s";
+//  	  COMMON_LOG::getInstance("common").debugStream().flush();
   }
   else
 	  printf ("glob_cache done in: %f s\n",s);
