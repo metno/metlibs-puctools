@@ -63,7 +63,7 @@
 #include <map>
 
 
-#define M_TIME 1
+//#define M_TIME 1
 
 using namespace std;
 
@@ -167,20 +167,10 @@ int
 glob_cache(const char *pattern, int flags, int (*errfunc)(const char *, int),
     glob_t *pglob)
 {
-
-  // all is well
-  int use_loghandler = 1;
-  milogger::LogHandler * plog = milogger::LogHandler::getInstance();
-  if (plog)
-	  plog->setObjectName("metlibs.puCtools.glob_cache");
-  else
-	  use_loghandler = 0;
+  MI_LOG & log = MI_LOG::getInstance("metlibs.puCtools.glob_cache");
   int result = 0;
 #ifdef DEBUGPRINT
-  if (use_loghandler)
-	  COMMON_LOG::getInstance("common").debugStream() << "pattern: " << pattern;
-  else
-	  printf ("glob_cache pattern: %s\n",pattern);
+	  log.debugStream() << "pattern: " << pattern;
 #endif
 
   // Lets get the directory part of pattern
@@ -192,11 +182,7 @@ glob_cache(const char *pattern, int flags, int (*errfunc)(const char *, int),
   _splitpath(pattern, drive, dir, fname, ext);
 
 #ifdef DEBUGPRINT
-  if (use_loghandler)
-	  COMMON_LOG::getInstance("common").debugStream() << "Splitted Path : " << pattern << " - " << drive << " - " << dir << " - " << fname << " - " << ext;
-  else
-	  printf ("Splitted Path : %s => %s - %s - %s - %s.\n", pattern,
-    		drive, dir, fname, ext);
+	  log.debugStream() << "Splitted Path : " << pattern << " - " << drive << " - " << dir << " - " << fname << " - " << ext;
 #endif
 
   glob_cache_t glob_res;
@@ -227,14 +213,7 @@ glob_cache(const char *pattern, int flags, int (*errfunc)(const char *, int),
 			#ifdef M_TIME
 			  gettimeofday(&post, NULL);
 			  double s = (((double)post.tv_sec*1000000.0 + (double)post.tv_usec)-((double)pre.tv_sec*1000000.0 + (double)pre.tv_usec))/1000000.0;
-			  if (use_loghandler)
-				  if (use_loghandler)
-				  {
-//				  	COMMON_LOG::getInstance("common").debugStream() << "glob_cache done in: " << s << " s";
-//				    COMMON_LOG::getInstance("common").debugStream().flush();
-				  }
-			  else
-				  printf ("glob_cache done in: %f s\n",s);
+			  log.infoStream() << "glob_cache done in: " << s << " s";
 			#endif
 			glob_res.gl_offs = pglob->gl_offs;
 			glob_res.gl_pathc = pglob->gl_pathc;
@@ -271,13 +250,7 @@ glob_cache(const char *pattern, int flags, int (*errfunc)(const char *, int),
 #ifdef M_TIME
   gettimeofday(&post, NULL);
   double s = (((double)post.tv_sec*1000000.0 + (double)post.tv_usec)-((double)pre.tv_sec*1000000.0 + (double)pre.tv_usec))/1000000.0;
-  if (use_loghandler)
-  {
-//	  COMMON_LOG::getInstance("common").debugStream() << "glob_cache done in: " << s << " s";
-//  	  COMMON_LOG::getInstance("common").debugStream().flush();
-  }
-  else
-	  printf ("glob_cache done in: %f s\n",s);
+  log.infoStream() << "glob_cache done in: " << s << " s";
 #endif
     // some globbing error
     if (result)

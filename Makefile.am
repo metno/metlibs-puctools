@@ -22,12 +22,15 @@ libpuCtools_la_CPPFLAGS = $(AM_CPPFLAGS) \
 	${LOG4CPP_CPPFLAGS}
 
 libpuCtools_la_LDFLAGS = ${VERSION_INFO}
-#	${LOG4CPP_LDFLAGS}
+if ENABLE_SHARED_LIBRARY
+libpuCtools_la_LDFLAGS += \
+	${LOG4CPP_LDFLAGS}
 
-#libpuCtools_la_LIBADD = \
-#	-lm \
-#	${MILOGGER_LIBS} \
-#	${LOG4CPP_LIBS}
+libpuCtools_la_LIBADD = \
+	-lm \
+	${MILOGGER_LIBS} \
+	${LOG4CPP_LIBS}
+endif
 
 pkg_includedir = ${includedir}/puCtools
 
