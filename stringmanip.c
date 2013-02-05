@@ -58,7 +58,7 @@ void trim(char* s)
   if (isspace(*s)) {
     for (nonspace=s; isspace(*nonspace); nonspace++)
       ;
-    while (*s++=*nonspace++)
+    while ((*s++=*nonspace++))
       ;
   }
 }
@@ -79,7 +79,7 @@ char *vstrcat(char *first, ...)
   len=strlen(first);
 
   va_start(argp,first);
-  while(p=va_arg(argp, char *))
+  while((p=va_arg(argp, char *)))
     len+=strlen(p);
   va_end(argp);
 
@@ -88,7 +88,7 @@ char *vstrcat(char *first, ...)
   strcpy(ret,first);
 
   va_start(argp, first);
-  while(p=va_arg(argp, char *))
+  while((p=va_arg(argp, char *)))
     strcat(ret,p);
   va_end(argp);
 

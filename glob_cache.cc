@@ -167,7 +167,9 @@ int
 glob_cache(const char *pattern, int flags, int (*errfunc)(const char *, int),
     glob_t *pglob)
 {
+#ifdef DEBUGPRINT
   MI_LOG & log = MI_LOG::getInstance("metlibs.puCtools.glob_cache");
+#endif
   int result = 0;
 #ifdef DEBUGPRINT
 	  log.debugStream() << "pattern: " << pattern;

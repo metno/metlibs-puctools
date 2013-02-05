@@ -53,7 +53,6 @@ void*  malloc_check(size_t);
 char*  strdup_check(const char*);
 void  _memusage();
 
-static void simpleError(const char*);
 static int mem=0;
 
 FILE *fopen_check(const char* name, const char* type)
@@ -119,11 +118,4 @@ char* strdup_check(const char* s)
 void _memusage()
 {
   printf("Value of mem: %d\n",mem);
-}
-
-static void simpleError(const char* error)
-{
-  fflush(NULL);
-  fprintf(stderr,error);
-  exit(1);
 }

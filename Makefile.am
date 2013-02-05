@@ -21,7 +21,7 @@ libpuCtools_la_CPPFLAGS = $(AM_CPPFLAGS) \
 	${MILOGGER_CPPFLAGS} \
 	${LOG4CPP_CPPFLAGS}
 
-libpuCtools_la_LDFLAGS = ${VERSION_INFO}
+libpuCtools_la_LDFLAGS = ${puCtools_VERSION_INFO}
 if ENABLE_SHARED_LIBRARY
 libpuCtools_la_LDFLAGS += \
 	${LOG4CPP_LDFLAGS}

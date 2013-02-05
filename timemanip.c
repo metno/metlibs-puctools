@@ -260,7 +260,7 @@ char* isoTime(const struct time* t)
     a++;
   a+=16;
 
-  if (c=malloc(a))
+  if ((c=malloc(a)))
     sprintf(c,"%04d-%02d-%02d %02d:%02d:%02d",
 	    t->year, t->month, t->day, t->hour, t->minute, t->second);
   else
@@ -294,7 +294,7 @@ struct time* isostr2time(const char* s)
   if (t) {
     if (s && strlen(s)==19){
       sscanf(s,"%04d-%02d-%02d %02d:%02d:%02d",
-	     t->year, t->month, t->day, t->hour, t->minute, t->second);
+	     &t->year, &t->month, &t->day, &t->hour, &t->minute, &t->second);
     } else {
       fprintf(stderr,"timemanip (isostr2time): Illegal input.\n");
       t->year = t->month = t->day = t->hour = t->minute = t->second = 0;
@@ -313,7 +313,7 @@ struct time* str2time(const char* s)
   if (t) {
     if (s && strlen(s)==14){
       sscanf(s,"%04d%02d%02d%02d%02d%02d",
-	     t->year, t->month, t->day, t->hour, t->minute, t->second);
+	     &t->year, &t->month, &t->day, &t->hour, &t->minute, &t->second);
     } else {
       fprintf(stderr,"timemanip (str2time): Illegal input.\n");
       t->year = t->month = t->day = t->hour = t->minute = t->second = 0;
