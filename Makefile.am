@@ -36,6 +36,7 @@ pkg_includedir = ${includedir}/puCtools
 
 pkg_include_HEADERS = \
 	bool.h \
+	deprecated.h \
 	puCglob.h \
 	glob_cache.h \
 	porttypes.h \
