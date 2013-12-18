@@ -6,6 +6,6 @@ includedir=@includedir@
 Name: puCtools
 Description: C functions 
 Version: @VERSION@
-Requires: @puCtools_pc_requires@
+Requires: miLogger >= 5.0.0
 Libs: -L${libdir} -lpuCtools
 Cflags: -I${includedir}
