@@ -1,53 +1,12 @@
-# $Id$
+#
+# Makefile for puCtools
+# 
+#
 
-pkgname = puCtools
+SUBDIRS = src
 
-include $(top_srcdir)/metlibs.mk
+ACLOCAL_AMFLAGS = -I m4
 
-lib_LTLIBRARIES = libpuCtools.la
-
-libpuCtools_la_SOURCES = \
-	getopt.c \
-	glob.c \
-	glob_cache.cc \
-	puMath.c \
-	safety.c \
-	sleep.c \
-	stringmanip.c \
-	strlcpy.c \
-	timemanip.c
-
-libpuCtools_la_CPPFLAGS = $(AM_CPPFLAGS) \
-	${MILOGGER_CPPFLAGS} \
-	${LOG4CPP_CPPFLAGS}
-
-libpuCtools_la_LDFLAGS = ${puCtools_VERSION_INFO}
-if ENABLE_SHARED_LIBRARY
-libpuCtools_la_LDFLAGS += \
-	${LOG4CPP_LDFLAGS}
-
-libpuCtools_la_LIBADD = \
-	-lm \
-	${MILOGGER_LIBS} \
-	${LOG4CPP_LIBS}
-endif
-
-pkg_includedir = ${includedir}/puCtools
-
-pkg_include_HEADERS = \
-	bool.h \
-	deprecated.h \
-	puCglob.h \
-	glob_cache.h \
-	porttypes.h \
-	puMath.h \
-	stringmanip.h \
-	getopt.h \
-	mkdir.h \
-	puCtools.h \
-	safety.h \
-	sleep.h \
-	stat.h \
-	strlcpy.h \
-	timemanip.h
+pkgconfigdir = $(libdir)/pkgconfig
+pkgconfig_DATA = puCtools.pc
 
