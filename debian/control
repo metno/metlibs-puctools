@@ -1,0 +1,15 @@
+Source: metlibs-common-puctools
+Priority: optional
+Maintainer: Borge Moe <borge.moe@met.no>
+Build-Depends:  debhelper (>= 7), autotools-dev, g++,
+  autoconf (>=2.61), automake (>= 1.10), libtool (>= 1.5),
+  metlibs-milogger-dev
+Standards-Version: 3.7.3
+Section: libs
+
+Package: metlibs-puctools-dev
+Section: libdevel
+Architecture: any
+Depends: metlibs-milogger-dev (= ${Source-Version}), ${misc:Depends}
+Description: some C utility functions (time maipulation, string, etc.)
+ puCTools contains some C utility functions like time maipulation, string, etc.
