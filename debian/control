@@ -10,6 +10,6 @@ Section: libs
 Package: metlibs-puctools-dev
 Section: libdevel
 Architecture: any
-Depends: metlibs-milogger-dev (= ${Source-Version}), ${misc:Depends}
+Depends: metlibs-milogger-dev, ${misc:Depends}
 Description: some C utility functions (time maipulation, string, etc.)
  puCTools contains some C utility functions like time maipulation, string, etc.

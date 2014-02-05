@@ -1,3 +1,9 @@
+metlibs-common-puctools (5.0.0-3) unstable; urgency=low
+
+  * fixed dependencies
+
+ -- Lisbeth Bergholt <lisbeth.bergholt@met.no>  Wed, 05 Feb 2014 09:01:33 +0100
+
 metlibs-common-puctools (5.0.0-2) unstable; urgency=low
 
   * m4/googletest.m4
