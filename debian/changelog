@@ -1,3 +1,9 @@
+metlibs-common-puctools (5.0.1-1) unstable; urgency=low
+
+  * workaround for bdiana using static libs to build shared lib
+
+ -- Lisbeth Bergholt <lisbeth.bergholt@met.no>  Wed, 05 Feb 2014 15:36:51 +0100
+
 metlibs-common-puctools (5.0.0-3) unstable; urgency=low
 
   * fixed dependencies
