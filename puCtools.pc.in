@@ -7,5 +7,5 @@ Name: puCtools
 Description: C functions 
 Version: @VERSION@
 Requires: miLogger >= 5.0.0
-Libs: -L${libdir} -lpuCtools
-Cflags: -I${includedir}
+Libs: -fPIC -L${libdir} -lpuCtools
+Cflags: -I${includedir} -fPIC

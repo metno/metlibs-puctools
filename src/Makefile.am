@@ -17,9 +17,9 @@ libpuCtools_la_SOURCES = \
 	strlcpy.c \
 	timemanip.c
 
-libpuCtools_la_CPPFLAGS = $(AM_CPPFLAGS) ${MILOGGER_CPPFLAGS} 
+libpuCtools_la_CPPFLAGS = -fPIC $(AM_CPPFLAGS) ${MILOGGER_CPPFLAGS} 
 
-libpuCtools_la_LDFLAGS = ${VERSION_INFO}
+libpuCtools_la_LDFLAGS = -fPIC ${VERSION_INFO}
 
 if ENABLE_SHARED_LIBRARY
 
