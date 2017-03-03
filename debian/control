@@ -1,15 +1,41 @@
 Source: metlibs-common-puctools
 Priority: optional
-Maintainer: Borge Moe <borge.moe@met.no>
-Build-Depends:  debhelper (>= 7), autotools-dev, g++,
-  autoconf (>=2.61), automake (>= 1.10), libtool (>= 1.5),
-  metlibs-milogger-dev, pkg-config
-Standards-Version: 3.7.3
+Maintainer: MET Norway <diana@met.no>
+Build-Depends: debhelper (>= 9),
+ cmake,
+ pkg-config
+Standards-Version: 3.9.2
 Section: libs
 
 Package: metlibs-puctools-dev
 Section: libdevel
 Architecture: any
-Depends: metlibs-milogger-dev, ${misc:Depends}
-Description: some C utility functions (time maipulation, string, etc.)
- puCTools contains some C utility functions like time maipulation, string, etc.
+Depends: libmetlibs-puctools6 (= ${binary:Version}),
+ ${shlibs:Depends},
+ ${misc:Depends}
+Description: MET Norway pu C tools
+ MET Norway pu C tools library with some C utility functions like time
+ manipulation, string, etc.
+ .
+ This package contains the development files.
+
+Package: libmetlibs-puctools6
+Section: libs
+Architecture: any
+Depends: ${shlibs:Depends}
+Description: MET Norway pu C tools
+ MET Norway pu C tools library with some C utility functions like time
+ manipulation, string, etc.
+ .
+ This package contains the shared library.
+
+Package: libmetlibs-puctools6-dbg
+Section: debug
+Priority: extra
+Architecture: any
+Depends: libmetlibs-puctools6 (= ${binary:Version})
+Description: MET Norway pu C tools
+ MET Norway pu C tools library with some C utility functions like time
+ manipulation, string, etc.
+ .
+ This package contains the shared library debug symbols.

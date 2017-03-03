@@ -1,6 +1,10 @@
 Format: http://dep.debian.net/deps/dep5
-Upstream-Name: metlibs
-Source: https://svn.met.no/metlibs
+Upstream-Name: metlibs-puctools
+Source: https://github.com/metno/metlibs-puctools
+
+Files: src/glob_cache.*
+Copyright: 1989, 1993 The Regents of the University of California
+License: BSD-3-clause
 
 Files: *
 Copyright: 2001-2014 Norwegian Meteorological Institute <diana@met.no>
