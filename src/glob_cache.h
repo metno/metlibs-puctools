@@ -39,12 +39,11 @@
 /* Imported into metlibs from OpenSSH 5.3p1 */
 /* OPENBSD ORIGINAL: include/glob.h */
 
-#ifndef _GLOB_CACHE_H_
-#define	_GLOB_CACHE_H_
+#ifndef METLIBS_PUCTOOLS_GLOB_CACHE_H
+#define METLIBS_PUCTOOLS_GLOB_CACHE_H
+
 #include <time.h>
 #include <sys/time.h>
-#include <miLogger/logger.h>
-#include <miLogger/LogHandler.h>
 #include "puCglob.h"
 
 
@@ -83,5 +82,4 @@ typedef struct {
 int	glob_cache(const char *, int, int (*)(const char *, int), glob_t *);
 void	globfree_cache(glob_t *);
 
-#endif /* !_GLOB_CACHE_H_ */
-
+#endif /* !METLIBS_PUCTOOLS_GLOB_CACHE_H */

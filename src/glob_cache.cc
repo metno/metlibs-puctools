@@ -62,6 +62,10 @@
 #include <string>
 #include <map>
 
+#ifdef DEBUGPRINT
+#define MILOGGER_CATEGORY "metlibs.puCtools"
+#include <miLogger/miLogging.h>
+#endif
 
 //#define M_TIME 1
 
@@ -168,12 +172,9 @@ glob_cache(const char *pattern, int flags, int (*errfunc)(const char *, int),
     glob_t *pglob)
 {
 #ifdef DEBUGPRINT
-  MI_LOG & log = MI_LOG::getInstance("metlibs.puCtools.glob_cache");
+  METLIBS_LOG_SCOPE(pattern);
 #endif
   int result = 0;
-#ifdef DEBUGPRINT
-	  log.debugStream() << "pattern: " << pattern;
-#endif
 
   // Lets get the directory part of pattern
   char drive[2];
@@ -184,7 +185,7 @@ glob_cache(const char *pattern, int flags, int (*errfunc)(const char *, int),
   _splitpath(pattern, drive, dir, fname, ext);
 
 #ifdef DEBUGPRINT
-	  log.debugStream() << "Splitted Path : " << pattern << " - " << drive << " - " << dir << " - " << fname << " - " << ext;
+  METLIBS_LOG_DEBUG("Splitted Path : " << pattern << " - " << drive << " - " << dir << " - " << fname << " - " << ext);
 #endif
 
   glob_cache_t glob_res;
@@ -193,7 +194,7 @@ glob_cache(const char *pattern, int flags, int (*errfunc)(const char *, int),
   map< string, glob_cache_t >::iterator its = glob_map.find(pattern);
   if (its != glob_map.end())
   {
-  	// Pattern was globbed before
+	// Pattern was globbed before
 	glob_res = its->second;
 	// check if directory has changed
 	pu_struct_stat stat_buf;
@@ -242,18 +243,13 @@ glob_cache(const char *pattern, int flags, int (*errfunc)(const char *, int),
   }
   else
   {
-	  // do the usual glob and save the result in cahce
-#ifdef M_TIME
-  struct timeval pre;
-  struct timeval post;
-  gettimeofday(&pre, NULL);
+    // do the usual glob and save the result in cache
+    {
+#ifdef DEBUGPRINT
+      METLIBS_LOG_TIME();
 #endif
-    result = glob(pattern, flags, errfunc, pglob);
-#ifdef M_TIME
-  gettimeofday(&post, NULL);
-  double s = (((double)post.tv_sec*1000000.0 + (double)post.tv_usec)-((double)pre.tv_sec*1000000.0 + (double)pre.tv_usec))/1000000.0;
-  log.infoStream() << "glob_cache done in: " << s << " s";
-#endif
+      result = glob(pattern, flags, errfunc, pglob);
+    }
     // some globbing error
     if (result)
     	return result;
@@ -279,4 +275,3 @@ glob_cache(const char *pattern, int flags, int (*errfunc)(const char *, int),
 
 	return result;
 }
-
