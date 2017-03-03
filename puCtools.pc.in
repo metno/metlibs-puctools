@@ -1,11 +1,4 @@
-prefix=@prefix@
-exec_prefix=@exec_prefix@
-libdir=@libdir@
-includedir=@includedir@
-
 Name: puCtools
-Description: C functions 
-Version: @VERSION@
-Requires: miLogger >= 5.0.0
-Libs: -fPIC -L${libdir} -lpuCtools
-Cflags: -I${includedir} -fPIC
+Description: MET Norway pu C tools
+Version: @PUCTOOLS_PVERSION_FULL@
+Requires: metlibs-puctools = @PUCTOOLS_PVERSION_FULL@
